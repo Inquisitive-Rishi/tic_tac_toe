@@ -1,41 +1,35 @@
-
-
-const gameboard = (function() {
-  const gb = [null, null, null, null, null, null];
-  const gbContainer = document.querySelector('.container')
-  const position = document.querySelectorAll('.position');
-
-  
-
-  function displayMarker() {
-      for (let i = 0; i < gb.length; i++) {
-        const gbel = document.createElement('p');
-        gbel.textContent = gb[i]
-        gbContainer.appendChild(gbel)
-      }
-    }
-   return { gb, displayMarker, position }
-})();
-
-
-
-function Player(name, marker) {
-    let choice;
-    const player = {}
-    player.name = name;
-    player.marker = marker;
-    const showName = () => player.name = name;
-    const showMarker = () => player.marker = marker;
-    return { showName, showMarker, choice };
-}
-
 const player1 = Player('p1', 'X');
 const player2 = Player('p2', 'O');
 
+const gameboard = (function() {
+  const gb = [];
+  const position = document.querySelectorAll('.position');
+  const p1Marker = player1.showPlayerMarker();
+  const p2Marker = player2.showPlayerMarker();
 
-// player1.choice = 3
+  position.forEach(p => {
+    p.addEventListener('click', () => {
+      player1.playerPosition = p.id;
+      gb[player1.playerPosition] = p1Marker;
+      displayMarker()
+    })
+  })
 
-// gameboard.gb[player1.choice] = player1.showMarker()
-// gameboard.displayMarker()
+    function displayMarker() {
+      const gbEl = document.createElement('p');
+      gbEl.textContent = p1Marker;
+      position[player1.playerPosition].appendChild(gbEl)
+    }
 
-// player1.choice = 3 -> set player1.showMarker to 3rd position in array.
+    return { gb, displayMarker, position }
+})();
+
+function Player(name, marker) {
+    let playerPosition;
+    const player = {}
+    player.name = name;
+    player.marker = marker;
+    const showPlayerName = () => player.name;
+    const showPlayerMarker = () => player.marker;
+    return { showPlayerName, showPlayerMarker, playerPosition };
+  }
