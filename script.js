@@ -13,10 +13,14 @@ const gameboard = (function() {
   let currentPlayer = player2;
   let currentPlayerMarker = p2Marker; 
 
-
+  let winner;
 
   position.forEach(p => {
     p.addEventListener('click', () => {
+      if (winner) {
+        return;
+      }
+      
       // this prevents more than one marker insertion
       if (idCollector.includes(p.id)) {
         return;
@@ -38,6 +42,35 @@ const gameboard = (function() {
       currentPlayer.playerPosition = p.id;
       gb[currentPlayer.playerPosition] = currentPlayerMarker;
       displayMarker();
+
+      // winner logic:
+      console.log(gb);
+      if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
+         ((gb[3] == p1Marker) && (gb[4] == p1Marker) && (gb[5] == p1Marker))||
+         ((gb[6] == p1Marker) && (gb[7] == p1Marker) && (gb[8] == p1Marker))||
+         ((gb[0] == p1Marker) && (gb[3] == p1Marker) && (gb[6] == p1Marker))||
+         ((gb[1] == p1Marker) && (gb[4] == p1Marker) && (gb[7] == p1Marker))||
+         ((gb[2] == p1Marker) && (gb[5] == p1Marker) && (gb[8] == p1Marker))||
+         ((gb[0] == p1Marker) && (gb[4] == p1Marker) && (gb[8] == p1Marker))||
+         ((gb[2] == p1Marker) && (gb[4] == p1Marker) && (gb[6] == p1Marker))) {
+        winner = `${player1.showPlayerName()} wins!`
+        console.log(winner);
+      } else if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
+      ((gb[3] == p2Marker) && (gb[4] == p2Marker) && (gb[5] == p2Marker))||
+      ((gb[6] == p2Marker) && (gb[7] == p2Marker) && (gb[8] == p2Marker))||
+      ((gb[0] == p2Marker) && (gb[3] == p2Marker) && (gb[6] == p2Marker))||
+      ((gb[1] == p2Marker) && (gb[4] == p2Marker) && (gb[7] == p2Marker))||
+      ((gb[2] == p2Marker) && (gb[5] == p2Marker) && (gb[8] == p2Marker))||
+      ((gb[0] == p2Marker) && (gb[4] == p2Marker) && (gb[8] == p2Marker))||
+      ((gb[2] == p2Marker) && (gb[4] == p2Marker) && (gb[6] == p2Marker))) {
+        winner = `${player2.showPlayerName()} wins`;
+        console.log(winner);
+      } else {
+        if (gb.length == 9) {
+          console.log("it's a tie");
+        }
+      }
+    
     })
   })
 
@@ -47,8 +80,11 @@ const gameboard = (function() {
       position[currentPlayer.playerPosition].appendChild(gbEl)
     }
 
+ 
     return { gb, displayMarker, position }
 })();
+
+
 
 function Player(name, marker) {
     let playerPosition;
