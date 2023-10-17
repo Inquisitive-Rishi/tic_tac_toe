@@ -3,15 +3,25 @@ const player2 = Player('p2', 'O');
 
 const gameboard = (function() {
   const gb = [];
+
+  // to prevent more than one marker insertion.
+  const idCollector = [];
   const position = document.querySelectorAll('.position');
   const p1Marker = player1.showPlayerMarker();
   const p2Marker = player2.showPlayerMarker();
 
   position.forEach(p => {
     p.addEventListener('click', () => {
+
+      if (idCollector.includes(p.id)) {
+        return;
+      } else {
+        idCollector.push(p.id);
+      }
+      
       player1.playerPosition = p.id;
       gb[player1.playerPosition] = p1Marker;
-      displayMarker()
+      displayMarker();
     })
   })
 
