@@ -8,6 +8,11 @@
     src: url(/fonts/mouldy-cheese-font/MouldyCheeseRegular-WyMWG.ttf);
 }
 
+@font-face {
+    font-family: 'grape-nuts';
+    src: url(/fonts/Grape_Nuts/GrapeNuts-Regular.ttf);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -23,25 +28,44 @@ body {
     align-items: center;
 }
 
+.title {
+    font-family: 'fun-groovy';
+    font-size: 7rem;
+}
+
+.start-btn {
+    font-family: 'cheese';
+    font-size: 30px;
+    padding: 10px;
+}
+
+.choose-marker-txt {
+    font-size: 1.5rem;
+}
+
+.choose-marker-btn > button {
+    font-family: 'grape-nuts';
+    font-weight: 900;
+    width: 300px;
+    margin-top: 30px;
+    font-size: 5em;
+}
 
 .opponent-div {
     margin-top: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 600px;
-    height: 150px;
+    justify-content: center;
+    gap: 100px;
+    width: 800px;
+    height: 250px;
+    /* border: 1px solid black; */
 }
 
-/* .opponent-div {
+.hide {
     display: none;
-} */
-
-h2 {
-    font-family: 'cheese';
-    letter-spacing: 5px;
-    font-size: 50px;
 }
+
 
 .opponent-div > div {
     display: flex;
@@ -50,15 +74,15 @@ h2 {
 }
 
 .opponent-div > div > img {
-    height: 100px;
-    width:100px;
+    height: 150px;
+    width: 150px;
     margin-bottom: 10px;
     transition: transform 0.2s ease;
 }
 
+
 .opponent-div > div > img:hover {
-    height: 150px;
-    width: 150px;
+    scale: 1.4;
     animation: vibrate 0.3s ease infinite;
 }
 
@@ -71,16 +95,65 @@ h2 {
     100% { transform: translate(0, 0); }
 }
 
-
-.title {
-    font-family: 'fun-groovy';
-    font-size: 7rem;
+h2 {
+    font-family: 'cheese';
+    letter-spacing: 5px;
+    font-size: 50px;
 }
 
-.start-btn {
-    font-family: 'cheese';
+form {
+    margin-top: 20px;
+}
+
+form > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-size: 2em;
+}
+
+.play-btn {
+    margin-top: 20px;
     font-size: 30px;
+    font-weight: 900;
     padding: 10px;
+    border-radius: 25%;
+}
+
+input[type='text'] {
+    width: 300px;
+    height: 30px;
+}
+
+input::placeholder {
+    font-size: 25px;
+}
+
+.gb-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    width: 90em;
+}
+
+[class$='-stats'] {
+    display: flex;
+    font-size: 5em;
+    flex-direction: column;
+    align-items: center;
+}
+
+[class$='-stats'] img {
+    height: 150px;
+    width: 150px;
 }
 
 .container {
