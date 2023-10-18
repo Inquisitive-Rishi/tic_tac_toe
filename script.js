@@ -2,6 +2,7 @@ const player1 = Player('p1', 'X');
 const player2 = Player('p2', '0');
 
 const gameboard = (function() {
+  
   const gb = [];
 
   // to prevent more than one marker insertion.
@@ -38,14 +39,15 @@ const gameboard = (function() {
       }
       })();
 
-
       currentPlayer.playerPosition = p.id;
       gb[currentPlayer.playerPosition] = currentPlayerMarker;
       displayMarker();
 
-      // winner logic:
       console.log(gb);
-      if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
+      
+      // winner logic:
+      (function() {
+        if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
          ((gb[3] == p1Marker) && (gb[4] == p1Marker) && (gb[5] == p1Marker))||
          ((gb[6] == p1Marker) && (gb[7] == p1Marker) && (gb[8] == p1Marker))||
          ((gb[0] == p1Marker) && (gb[3] == p1Marker) && (gb[6] == p1Marker))||
@@ -69,7 +71,8 @@ const gameboard = (function() {
         if (idCollector.length == 9) {
           console.log('It\'s a tie');
         }
-      }
+      }})()
+
     })
   })
 
