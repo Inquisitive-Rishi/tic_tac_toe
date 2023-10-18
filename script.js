@@ -66,11 +66,10 @@ const gameboard = (function() {
         winner = `${player2.showPlayerName()} wins`;
         console.log(winner);
       } else {
-        if (gb.length == 9) {
-          console.log("it's a tie");
+        if (idCollector.length == 9) {
+          console.log('It\'s a tie');
         }
       }
-    
     })
   })
 
