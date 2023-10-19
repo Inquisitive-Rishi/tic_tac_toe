@@ -178,7 +178,7 @@ const gameboard = (function() {
       });
 
 
-      exitBtn.addEventListener('click', () => console.log("HI"));
+      exitBtn.addEventListener('click', () => window.location.reload());
 
     })()
 
