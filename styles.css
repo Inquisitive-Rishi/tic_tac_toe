@@ -176,6 +176,9 @@ input::placeholder {
 }
 
 .position {
+    font-family: 'grape-nuts';
+    font-size: 4em;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;

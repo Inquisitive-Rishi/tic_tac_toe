@@ -34,6 +34,11 @@ const pageElementDisplay = (function() {
     section2.classList.add('hidden');
     section3.classList.remove('hidden');
   })
+  
+  return {
+    section4,
+    section5,
+  }
 })();
 
 // player creation
@@ -48,34 +53,39 @@ function Player(name, marker) {
 }
 
 
-const playerSelection = (function() {
-
-  // case 1: opponent human
-  let player1Ipt = document.querySelector('#player1');
-  let player2Ipt = document.querySelector('#player2');
-  const playBtn = document.getElementById('play-btn')
-
-  playBtn.addEventListener('click', (e) =>{
-      e.preventDefault();
-      const player1 = Player(player1Ipt.value, 'X')
-      const player2 = Player(player2Ipt.value, '0')
-      console.log(player1.showPlayerName(), player1.showPlayerMarker());
-      console.log(player2.showPlayerName(), player2.showPlayerMarker());
-  })
-})();
-
-const player1 = Player('p1', 'X');
-const player2 = Player('p2', '0');
+// const player1 = Player('p1', 'X');
+// const player2 = Player('p2', '0');
 
 const gameboard = (function() {
   
   const gb = [];
 
+    // case 1: opponent human
+    let player1Ipt = document.querySelector('#player1');
+    let player2Ipt = document.querySelector('#player2');
+    const playBtn = document.getElementById('play-btn')
+
+    let p1Marker;
+    let p2Marker;
+    let player1;
+    let player2;
+  
+    playBtn.addEventListener('click', (e) =>{
+        e.preventDefault();
+        player1 = Player(player1Ipt.value, 'X')
+        player2 = Player(player2Ipt.value, '0')
+        console.log(player1.showPlayerName(), player1.showPlayerMarker());
+        console.log(player2.showPlayerName(), player2.showPlayerMarker());
+        p1Marker = player1.showPlayerMarker();
+        p2Marker = player2.showPlayerMarker();
+        pageElementDisplay.section4.classList.add('hidden')
+        pageElementDisplay.section5.classList.remove('hidden')
+    })
+
   // to prevent more than one marker insertion.
   const idCollector = [];
   const position = document.querySelectorAll('.position');
-  const p1Marker = player1.showPlayerMarker();
-  const p2Marker = player2.showPlayerMarker();
+ 
 
   let currentPlayer = player2;
   let currentPlayerMarker = p2Marker; 
@@ -151,5 +161,3 @@ const gameboard = (function() {
  
     return { gb, displayMarker, position }
 })();
-
-
