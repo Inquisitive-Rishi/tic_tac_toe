@@ -104,6 +104,8 @@ const gameboard = (function() {
   const dialog = document.querySelector('dialog');
   const playAgainBtn = document.querySelector('.play-again');
   const exitBtn = document.querySelector('.exit');
+  const msg = document.querySelector('h2')
+
 
   position.forEach(p => {
     p.addEventListener('click', () => {
@@ -160,13 +162,13 @@ const gameboard = (function() {
         console.log(winner);
       } else {
         if (idCollector.length == 9) {
-          console.log('It\'s a tie');
+          dialog.showModal()
+          msg.textContent = 'It\'s a tie!!!';
         }
       }
       // modal appears after winner declared
       if (winner) {
         dialog.showModal();
-        const msg = document.querySelector('h2')
         msg.textContent = `${winner} 🔥`;
         dialog.appendChild(msg);
       }
