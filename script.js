@@ -53,6 +53,15 @@ function Player(name, marker) {
 }
 
 const gameboard = (function() {
+
+  const gbContainer = document.querySelector('.container');
+
+  for (let i = 0; i < 9; i++) {
+    const box = document.createElement('div');
+    box.setAttribute('class', 'position');
+    box.setAttribute('id', `${i}`);
+    gbContainer.appendChild(box);
+    }
   
   const gb = [];
 
@@ -92,12 +101,10 @@ const gameboard = (function() {
   let player2Score = 0;
 
   // winner declaration:
-  const btn = document.querySelector('button')
-  const dialog = document.querySelector('dialog')
-  const playAgainBtn = document.querySelector('.play-again')
+  const dialog = document.querySelector('dialog');
+  const playAgainBtn = document.querySelector('.play-again');
   const exitBtn = document.querySelector('.exit');
-  
-  
+
   position.forEach(p => {
     p.addEventListener('click', () => {
       if (winner) {
@@ -163,7 +170,14 @@ const gameboard = (function() {
         msg.textContent = `${winner} 🔥`;
         dialog.appendChild(msg);
       }
-      
+
+      playAgainBtn.addEventListener('click', () => {
+
+      });
+
+
+      exitBtn.addEventListener('click', () => console.log("HI"));
+
     })()
 
     })
