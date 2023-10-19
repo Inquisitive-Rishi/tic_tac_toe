@@ -1,3 +1,16 @@
+const pageElementDisplay = (function() {
+  const section1 = document.querySelector('#sec-1');
+  const section2 = document.querySelector('#sec-2');
+  const section3 = document.querySelector('#sec-3');
+  const section4 = document.querySelector('#sec-4');
+  const section5 = document.querySelector('#sec-5');
+  section1.classList.add('hidden')
+  section2.classList.add('hidden')
+  section3.classList.add('hidden')
+  section4.classList.add('hidden')
+  section5.classList.add('hidden')
+})();
+
 const player1 = Player('p1', 'X');
 const player2 = Player('p2', '0');
 
