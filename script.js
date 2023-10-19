@@ -55,13 +55,18 @@ function Player(name, marker) {
 const gameboard = (function() {
 
   const gbContainer = document.querySelector('.container');
-
+  let box;
   for (let i = 0; i < 9; i++) {
-    const box = document.createElement('div');
+    box = document.createElement('div');
     box.setAttribute('class', 'position');
     box.setAttribute('id', `${i}`);
     gbContainer.appendChild(box);
-    }
+  }
+
+  //audio selection
+  const clickAudio = document.querySelector('#click-audio')
+  const tieAudio = document.querySelector('#tie-audio')
+  const winnerAudio = document.querySelector('#winner-audio')
   
   const gb = [];
 
@@ -101,10 +106,10 @@ const gameboard = (function() {
   let player2Score = 0;
 
   // winner declaration:
-  const dialog = document.querySelector('dialog');
   const playAgainBtn = document.querySelector('.play-again');
   const exitBtn = document.querySelector('.exit');
-  const msg = document.querySelector('h2')
+  const msg = document.querySelector('.live-msg');
+  msg.textContent = 'Player1 - X';
 
 
   position.forEach(p => {
@@ -112,6 +117,8 @@ const gameboard = (function() {
       if (winner) {
         return;
       }
+
+      clickAudio.play()
       
       // this prevents more than one marker insertion
       if (idCollector.includes(p.id)) {
@@ -122,9 +129,11 @@ const gameboard = (function() {
 
       (function() {
         if (currentPlayer == player1 && currentPlayerMarker == p1Marker) {
+          msg.textContent = 'Player1 - X';
           currentPlayer = player2;
           currentPlayerMarker = p2Marker;
-      } else {
+        } else {
+          msg.textContent = 'Player2 - 0';
           currentPlayer = player1;
           currentPlayerMarker = p1Marker;
       }
@@ -147,6 +156,7 @@ const gameboard = (function() {
          ((gb[0] == p1Marker) && (gb[4] == p1Marker) && (gb[8] == p1Marker))||
          ((gb[2] == p1Marker) && (gb[4] == p1Marker) && (gb[6] == p1Marker))) {
         winner = `${player1.showPlayerName()} wins!`
+        winnerAudio.play()
         player1Score++;
         console.log(winner);
       } else if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
@@ -159,22 +169,22 @@ const gameboard = (function() {
       ((gb[2] == p2Marker) && (gb[4] == p2Marker) && (gb[6] == p2Marker))) {
         winner = `${player2.showPlayerName()} wins`;
         player2Score++;
+        winnerAudio.play()
         console.log(winner);
       } else {
         if (idCollector.length == 9) {
-          dialog.showModal()
+          tieAudio.play()
           msg.textContent = 'It\'s a tie!!!';
         }
       }
-      // modal appears after winner declared
+
       if (winner) {
-        dialog.showModal();
         msg.textContent = `${winner} 🔥`;
-        dialog.appendChild(msg);
       }
 
       playAgainBtn.addEventListener('click', () => {
-
+        gb.length = 0;
+        idCollector.length = 0;
       });
 
 

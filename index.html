@@ -8,15 +8,12 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <dialog id="my-dialog">
-        <h2></h2>
-        <div class="buttons">
-        <button class="exit" formmethod="">Exit</button>
-        <button class="play-again">Play again ↻</button>
-      </div>
-    </dialog>
+
+    <audio src="/audio/bullet.mp3" id="winner-audio"></audio>
+    <audio src="/audio/nope.mp3" id="tie-audio"></audio>
+    <audio src="/audio/u_click.mp3" id="click-audio"></audio>
     <section id="sec-1">
-    <h1 class="title">TIC TAC TOE</h1>
+    <h1 class="title">TIC TAC TOE</h1>  
     <button class="start-btn">START GAME</button>
     </section>
     <section id="sec-2">
@@ -62,6 +59,7 @@
         </section>
 
     <section id="sec-5">
+        <p class="live-msg"></p>
         <div class="gb-page">
             <!-- <div class="left-stats">
                 <img src="/icons/gigachad.png" alt="man">
@@ -74,6 +72,10 @@
             <img src="/icons/ai.png" alt="man">
             <div class="p2-score">2</div>
         </div> -->
+        </div>
+        <div class="buttons">
+            <button class="exit">Exit</button>
+            <button class="play-again">Play again ↻</button>
         </div>
     </section>
     

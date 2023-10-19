@@ -29,7 +29,7 @@ dialog {
 }
 
 .buttons {
-    margin-bottom: 20px;
+    margin-top: 20px;
     display: flex;
     gap: 5px;
 }
@@ -202,6 +202,14 @@ input::placeholder {
 [class$='-stats'] img {
     height: 150px;
     width: 150px;
+}
+
+.live-msg {
+    letter-spacing: 2px;
+    font-family: 'cheese';
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 50px;
 }
 
 .container {
