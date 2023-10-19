@@ -34,7 +34,34 @@ const pageElementDisplay = (function() {
     section2.classList.add('hidden');
     section3.classList.remove('hidden');
   })
- 
+})();
+
+// player creation
+function Player(name, marker) {
+  let playerPosition;
+  const player = {}
+  player.name = name;
+  player.marker = marker;
+  const showPlayerName = () => player.name;
+  const showPlayerMarker = () => player.marker;
+  return { showPlayerName, showPlayerMarker, playerPosition };
+}
+
+
+const playerSelection = (function() {
+
+  // case 1: opponent human
+  let player1Ipt = document.querySelector('#player1');
+  let player2Ipt = document.querySelector('#player2');
+  const playBtn = document.getElementById('play-btn')
+
+  playBtn.addEventListener('click', (e) =>{
+      e.preventDefault();
+      const player1 = Player(player1Ipt.value, 'X')
+      const player2 = Player(player2Ipt.value, '0')
+      console.log(player1.showPlayerName(), player1.showPlayerMarker());
+      console.log(player2.showPlayerName(), player2.showPlayerMarker());
+  })
 })();
 
 const player1 = Player('p1', 'X');
@@ -126,13 +153,3 @@ const gameboard = (function() {
 })();
 
 
-
-function Player(name, marker) {
-    let playerPosition;
-    const player = {}
-    player.name = name;
-    player.marker = marker;
-    const showPlayerName = () => player.name;
-    const showPlayerMarker = () => player.marker;
-    return { showPlayerName, showPlayerMarker, playerPosition };
-}

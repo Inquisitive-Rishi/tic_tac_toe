@@ -135,6 +135,10 @@ form label {
 }
 
 input[type='text'] {
+    font-family: 'grape-nuts';
+    font-size: 2em;
+    letter-spacing: 2px;
+    font-weight: 900;
     width: 300px;
     height: 30px;
 }
