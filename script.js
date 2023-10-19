@@ -4,11 +4,37 @@ const pageElementDisplay = (function() {
   const section3 = document.querySelector('#sec-3');
   const section4 = document.querySelector('#sec-4');
   const section5 = document.querySelector('#sec-5');
-  section1.classList.add('hidden')
-  section2.classList.add('hidden')
-  section3.classList.add('hidden')
-  section4.classList.add('hidden')
-  section5.classList.add('hidden')
+
+  section2.classList.add('hidden');
+  section3.classList.add('hidden');
+  section4.classList.add('hidden');
+  section5.classList.add('hidden');
+
+  const startBtn = document.querySelector('.start-btn');
+  const human = document.querySelector('#human');
+  const ai = document.querySelector('#ai');
+  const gc = document.querySelector('#gc');
+
+  startBtn.addEventListener('click', () => {
+    section1.classList.add('hidden');
+    section2.classList.remove('hidden');
+  });
+
+  human.addEventListener('click', () => {
+    section2.classList.add('hidden');
+    section4.classList.remove('hidden');
+  });
+
+  ai.addEventListener('click', () => {
+    section2.classList.add('hidden');
+    section3.classList.remove('hidden');
+  })
+
+  gc.addEventListener('click', () => {
+    section2.classList.add('hidden');
+    section3.classList.remove('hidden');
+  })
+ 
 })();
 
 const player1 = Player('p1', 'X');
