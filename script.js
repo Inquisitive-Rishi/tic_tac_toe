@@ -52,23 +52,19 @@ function Player(name, marker) {
   return { showPlayerName, showPlayerMarker, playerPosition };
 }
 
-
-// const player1 = Player('p1', 'X');
-// const player2 = Player('p2', '0');
-
 const gameboard = (function() {
   
   const gb = [];
 
-    // case 1: opponent human
+  let p1Marker;
+  let p2Marker;
+  let player1;
+  let player2;
+
+    // case 1: opponent human logic starts----
     let player1Ipt = document.querySelector('#player1');
     let player2Ipt = document.querySelector('#player2');
     const playBtn = document.getElementById('play-btn')
-
-    let p1Marker;
-    let p2Marker;
-    let player1;
-    let player2;
   
     playBtn.addEventListener('click', (e) =>{
         e.preventDefault();
@@ -81,6 +77,7 @@ const gameboard = (function() {
         pageElementDisplay.section4.classList.add('hidden')
         pageElementDisplay.section5.classList.remove('hidden')
     })
+    // human opponent logic ends here----
 
   // to prevent more than one marker insertion.
   const idCollector = [];
@@ -91,7 +88,16 @@ const gameboard = (function() {
   let currentPlayerMarker = p2Marker; 
 
   let winner;
+  let player1Score = 0;
+  let player2Score = 0;
 
+  // winner declaration:
+  const btn = document.querySelector('button')
+  const dialog = document.querySelector('dialog')
+  const playAgainBtn = document.querySelector('.play-again')
+  const exitBtn = document.querySelector('.exit');
+  
+  
   position.forEach(p => {
     p.addEventListener('click', () => {
       if (winner) {
@@ -132,6 +138,7 @@ const gameboard = (function() {
          ((gb[0] == p1Marker) && (gb[4] == p1Marker) && (gb[8] == p1Marker))||
          ((gb[2] == p1Marker) && (gb[4] == p1Marker) && (gb[6] == p1Marker))) {
         winner = `${player1.showPlayerName()} wins!`
+        player1Score++;
         console.log(winner);
       } else if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
       ((gb[3] == p2Marker) && (gb[4] == p2Marker) && (gb[5] == p2Marker))||
@@ -142,12 +149,22 @@ const gameboard = (function() {
       ((gb[0] == p2Marker) && (gb[4] == p2Marker) && (gb[8] == p2Marker))||
       ((gb[2] == p2Marker) && (gb[4] == p2Marker) && (gb[6] == p2Marker))) {
         winner = `${player2.showPlayerName()} wins`;
+        player2Score++;
         console.log(winner);
       } else {
         if (idCollector.length == 9) {
           console.log('It\'s a tie');
         }
-      }})()
+      }
+      // modal appears after winner declared
+      if (winner) {
+        dialog.showModal();
+        const msg = document.querySelector('h2')
+        msg.textContent = `${winner} 🔥`;
+        dialog.appendChild(msg);
+      }
+      
+    })()
 
     })
   })
@@ -161,3 +178,9 @@ const gameboard = (function() {
  
     return { gb, displayMarker, position }
 })();
+//  
+// 
+
+// 
+
+// 

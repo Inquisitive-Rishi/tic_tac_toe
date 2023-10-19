@@ -8,13 +8,18 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <dialog id="my-dialog">
+        <h2></h2>
+        <div class="buttons">
+        <button class="exit" formmethod="">Exit</button>
+        <button class="play-again">Play again ↻</button>
+      </div>
+    </dialog>
     <section id="sec-1">
     <h1 class="title">TIC TAC TOE</h1>
     <button class="start-btn">START GAME</button>
     </section>
-
-
-        <section id="sec-2">
+    <section id="sec-2">
             <h2>CHOOSE YOUR OPPONENT</h2>
         <div class="opponent-div">
             <div id="human">
@@ -58,10 +63,10 @@
 
     <section id="sec-5">
         <div class="gb-page">
-            <div class="left-stats">
+            <!-- <div class="left-stats">
                 <img src="/icons/gigachad.png" alt="man">
                 <div class="p1-score">1</div>
-            </div>
+            </div> -->
         <div class="container">
             <div class="position" id="0"></div>
             <div class="position" id="1"></div>
@@ -73,10 +78,10 @@
             <div class="position" id="7"></div>
             <div class="position" id="8"></div>
         </div>
-        <div class="right-stats">
+        <!-- <div class="right-stats">
             <img src="/icons/ai.png" alt="man">
             <div class="p2-score">2</div>
-        </div>
+        </div> -->
         </div>
     </section>
     
