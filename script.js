@@ -74,12 +74,21 @@ const gameboard = (function() {
   let p2Marker;
   let player1;
   let player2;
+  let p1Score = 0;
+  let p2Score = 0;
+
+    // select player name and score stats;
+    const p1NameContainer = document.querySelector('.p1-name');  
+    const p2NameContainer = document.querySelector('.p2-name');  
+    const p1ScoreContainer = document.querySelector('.p1-score');  
+    const p2ScoreContainer = document.querySelector('.p2-score');  
 
     // case 1: opponent human logic starts----
     let player1Ipt = document.querySelector('#player1');
     let player2Ipt = document.querySelector('#player2');
-    const playBtn = document.getElementById('play-btn')
+    const playBtn = document.getElementById('play-btn');
   
+
     playBtn.addEventListener('click', (e) =>{
         e.preventDefault();
         player1 = Player(player1Ipt.value, 'X')
@@ -90,8 +99,16 @@ const gameboard = (function() {
         p2Marker = player2.showPlayerMarker();
         pageElementDisplay.section4.classList.add('hidden')
         pageElementDisplay.section5.classList.remove('hidden')
+
+        p1NameContainer.textContent = player1.showPlayerName();
+        p2NameContainer.textContent = player2.showPlayerName();
+        p1ScoreContainer.textContent = p1Score;
+        p2ScoreContainer.textContent = p2Score;
+
     })
     // human opponent logic ends here----
+
+  
 
   // to prevent more than one marker insertion.
   const idCollector = [];
@@ -102,8 +119,6 @@ const gameboard = (function() {
   let currentPlayerMarker = p2Marker; 
 
   let winner;
-  let player1Score = 0;
-  let player2Score = 0;
 
   
   // winner declaration:
@@ -114,7 +129,6 @@ const gameboard = (function() {
   if (player1) {
     msg.textContent = `${player1.showPlayerName()}'s turn - X`;
   }
-
 
   position.forEach(p => {
     p.addEventListener('click', () => {
@@ -161,7 +175,7 @@ const gameboard = (function() {
          ((gb[2] == p1Marker) && (gb[4] == p1Marker) && (gb[6] == p1Marker))) {
         winner = `${player1.showPlayerName()} wins!`
         winnerAudio.play()
-        player1Score++;
+        p1Score++;
         console.log(winner);
       } else if (((gb[0] == p1Marker) && (gb[1] == p1Marker) && (gb[2] == p1Marker))||
       ((gb[3] == p2Marker) && (gb[4] == p2Marker) && (gb[5] == p2Marker))||
@@ -172,7 +186,7 @@ const gameboard = (function() {
       ((gb[0] == p2Marker) && (gb[4] == p2Marker) && (gb[8] == p2Marker))||
       ((gb[2] == p2Marker) && (gb[4] == p2Marker) && (gb[6] == p2Marker))) {
         winner = `${player2.showPlayerName()} wins`;
-        player2Score++;
+        p2Score++;
         winnerAudio.play()
         console.log(winner);
       } else {
