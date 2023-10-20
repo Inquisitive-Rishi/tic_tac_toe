@@ -185,6 +185,12 @@ const gameboard = (function() {
       playAgainBtn.addEventListener('click', () => {
         gb.length = 0;
         idCollector.length = 0;
+        winner = '';
+        for (let i = 0; i < 9; i++) {
+          const parent = document.getElementById(`${i}`)
+          const child = document.querySelector('.position p')
+          parent.removeChild(child)
+        }
       });
 
 
