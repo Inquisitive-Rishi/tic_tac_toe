@@ -59,7 +59,7 @@ const gameboard = (function() {
   for (let i = 0; i < 9; i++) {
     box = document.createElement('div');
     box.setAttribute('class', 'position');
-    box.setAttribute('id', `${i}`);
+    box.setAttribute('data-idx', `${i}`);
     gbContainer.appendChild(box);
   }
 
@@ -121,10 +121,10 @@ const gameboard = (function() {
       clickAudio.play()
       
       // this prevents more than one marker insertion
-      if (idCollector.includes(p.id)) {
+      if (idCollector.includes(p.dataset.idx)) {
         return;
       } else {
-        idCollector.push(p.id);
+        idCollector.push(p.dataset.idx);
       }
 
       (function() {
@@ -139,7 +139,7 @@ const gameboard = (function() {
       }
       })();
 
-      currentPlayer.playerPosition = p.id;
+      currentPlayer.playerPosition = p.dataset.idx;
       gb[currentPlayer.playerPosition] = currentPlayerMarker;
       displayMarker();
 
@@ -187,13 +187,12 @@ const gameboard = (function() {
         idCollector.length = 0;
         winner = '';
         for (let i = 0; i < 9; i++) {
-          const parent = document.getElementById(`${i}`)
+          const parent = document.querySelector(`[data-idx="${i}"]`)
           const child = document.querySelector('.position p')
-          parent.removeChild(child)
+          if (child) {parent.removeChild(child)};
         }
       });
-
-
+      
       exitBtn.addEventListener('click', () => window.location.reload());
 
     })()
