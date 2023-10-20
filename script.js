@@ -105,11 +105,15 @@ const gameboard = (function() {
   let player1Score = 0;
   let player2Score = 0;
 
+  
   // winner declaration:
   const playAgainBtn = document.querySelector('.play-again');
   const exitBtn = document.querySelector('.exit');
   const msg = document.querySelector('.live-msg');
-  msg.textContent = 'Player1 - X';
+
+  if (player1) {
+    msg.textContent = `${player1.showPlayerName()}'s turn - X`;
+  }
 
 
   position.forEach(p => {
@@ -129,11 +133,11 @@ const gameboard = (function() {
 
       (function() {
         if (currentPlayer == player1 && currentPlayerMarker == p1Marker) {
-          msg.textContent = 'Player1 - X';
+          msg.textContent = `${player1.showPlayerName()}'s turn - X`;
           currentPlayer = player2;
           currentPlayerMarker = p2Marker;
         } else {
-          msg.textContent = 'Player2 - 0';
+          msg.textContent = `${player2.showPlayerName()}'s turn - 0`;
           currentPlayer = player1;
           currentPlayerMarker = p1Marker;
       }
@@ -183,13 +187,16 @@ const gameboard = (function() {
       }
 
       playAgainBtn.addEventListener('click', () => {
+        msg.textContent = `${player1.showPlayerName()}'s turn - X`;
         gb.length = 0;
         idCollector.length = 0;
         winner = '';
         for (let i = 0; i < 9; i++) {
           const parent = document.querySelector(`[data-idx="${i}"]`)
-          const child = document.querySelector('.position p')
-          if (child) {parent.removeChild(child)};
+          if (document.querySelector('.position p')) {
+            const child = document.querySelector('.position p')
+            parent.removeChild(child)
+          }
         }
       });
       
